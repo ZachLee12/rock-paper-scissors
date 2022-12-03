@@ -46,12 +46,12 @@ let playRound = (playerSelection, computerSelection) => {
 
 let check = (input) => {
     if (input === null) {
-        console.log("Invalid input")
+        console.log("Invalid input. Enter rock, paper or scissors!")
         return false;
     }
 
     if (!choices.includes(input.trim().toLowerCase())) {
-        console.log("Invalid input")
+        console.log("Invalid input. Enter rock, paper or scissors!")
         return false;
     }
 
@@ -71,7 +71,7 @@ let game = () => {
         (function () {
             playerInput = prompt(`Enter rock, paper or scissors [round ${i + 1}]!`)
         }())
-
+        
         validInput = check(playerInput);
         while (!validInput) {
             (function () {
@@ -81,7 +81,10 @@ let game = () => {
         }
 
         playerWins = playRound(playerInput, computerPlay())
-        playerWins ? playerScore++ : computerScore++;
+        
+        if (typeof playerWins === typeof false) {
+            playerWins ? playerScore++ : computerScore++;
+        } 
 
     }
 
