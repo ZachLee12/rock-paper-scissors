@@ -52,9 +52,11 @@ let game = () => {
     let playerInput = undefined;
     let playerWins = undefined;
 
+    alert("A game of rock, paper, scissors! Can you beat your own computer in 5 rounds?")
+
     for (let i = 0; i < 5; i++) {
         (function () {
-            playerInput = prompt("Enter your choice: ");
+            playerInput = prompt(`Enter rock, paper, or scissors [round ${i + 1}]: `);
 
         }())
         playerWins = playRound(playerInput, computerPlay())
