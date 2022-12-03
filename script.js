@@ -6,6 +6,13 @@ let computerPlay = () => {
 let playRound = (playerSelection, computerSelection) => {
     if (playerSelection != null) {
         playerSelection = playerSelection.trim().toLowerCase();
+        if (playerSelection.length == 0) {
+            console.log("You didn't enter anything. You lose this round :)");
+        }
+    }
+
+    else if (playerSelection === null) {
+        console.log("You didn't enter anything. You lose this round :)");
     }
 
     let playerWins = false;
@@ -66,7 +73,7 @@ let game = () => {
             computerScore++;
         }
     }
-    
+
     console.log("#########################################");
     console.log(`Your score: ${playerScore}`);
     console.log(`Computer score: ${computerScore}`);
@@ -75,7 +82,7 @@ let game = () => {
         console.log("You won!");
     } else if (playerScore < computerScore) {
         console.log("Computer won!");
-    }else{
+    } else {
         console.log("Nobody won!");
     }
     console.log("#########################################");
