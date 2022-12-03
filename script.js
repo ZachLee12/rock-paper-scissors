@@ -1,20 +1,9 @@
+let choices = ["rock", "paper", "scissors"];
 let computerPlay = () => {
-    choices = ["rock", "paper", "scissors"];
     return choices[Math.floor(Math.random() * 3)];
 }
 
 let playRound = (playerSelection, computerSelection) => {
-    if (playerSelection != null) {
-        playerSelection = playerSelection.trim().toLowerCase();
-        if (playerSelection.length == 0) {
-            console.log("You didn't enter anything. You lose this round :)");
-        }
-    }
-
-    else if (playerSelection === null) {
-        console.log("You didn't enter anything. You lose this round :)");
-    }
-
     let playerWins = false;
     if (playerSelection === computerSelection) {
         console.log("Draw!");
@@ -47,31 +36,53 @@ let playRound = (playerSelection, computerSelection) => {
             playerWins = false;
     }
 
+    playerSelection = playerSelection.trim().toLowerCase();
+    computerSelection = computerSelection.trim().toLowerCase();
     playerWins ? console.log(`You Win! ${playerSelection} beats ${computerSelection}`) :
         console.log(`You Lose! ${computerSelection} beats ${playerSelection}`)
     return playerWins;
 
 }
 
+let check = (input) => {
+    if (input === null) {
+        console.log("Invalid input")
+        return false;
+    }
+
+    if (!choices.includes(input.trim().toLowerCase())) {
+        console.log("Invalid input")
+        return false;
+    }
+
+    return true
+}
+
 let game = () => {
     let playerScore = 0;
     let computerScore = 0;
-    let playerInput = undefined;
     let playerWins = undefined;
+    let validInput = false;
+    let playerInput = "";
 
     alert("A game of rock, paper, scissors! Can you beat your own computer in 5 rounds?")
 
     for (let i = 0; i < 5; i++) {
         (function () {
-            playerInput = prompt(`Enter rock, paper, or scissors [round ${i + 1}]: `);
-
+            playerInput = prompt(`Enter rock, paper or scissors [round ${i + 1}]!`)
         }())
-        playerWins = playRound(playerInput, computerPlay())
-        if (playerWins && (typeof playerWins === typeof false)) {//because if "Draw", it returns a string, not boolean
-            playerScore++;
-        } else if (!playerWins && (typeof playerWins === typeof false)) {
-            computerScore++;
+
+        validInput = check(playerInput);
+        while (!validInput) {
+            (function () {
+                playerInput = prompt(`Enter rock, paper or scissors [round ${i + 1}]!`)
+            }())
+            validInput = check(playerInput);
         }
+
+        playerWins = playRound(playerInput, computerPlay())
+        playerWins ? playerScore++ : computerScore++;
+
     }
 
     console.log("#########################################");
