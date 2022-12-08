@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'VT323';
-    src: url("./VT323\ \(1\)/VT323-Regular.ttf");
+    src: url("./fonts/VT323\ \(1\)/VT323-Regular.ttf");
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: url("./Roboto\ \(1\)/Roboto-Medium.ttf");
+    src: url("./fonts/Roboto\ \(1\)/Roboto-Medium.ttf");
 }
 
 html,
