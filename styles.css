@@ -1,0 +1,159 @@
+@font-face {
+    font-family: 'VT323';
+    src: url("./VT323\ \(1\)/VT323-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url("./Roboto\ \(1\)/Roboto-Medium.ttf");
+}
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #595959;
+}
+
+.introductionBox {
+    position: relative;
+    top: 0px;
+    background-color: #232529;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 80px;
+    color: goldenrod;
+    margin-bottom: 20px;
+}
+
+.announcement {
+    margin-top: 20px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.announcement>div {
+    color: #fef6f6;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+figure {
+    background-color: #e0d6d6;
+    padding: 10px;
+    border: 2px solid #cacaca;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+figure>img {
+    width: 100px;
+}
+
+figure>figcaption {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+figure:hover {
+    border-color: #3cb2fb;
+    box-shadow: 0px 0px 20px #3cb2fb;
+    filter: brightness(85%);
+    transform: scale(1.2);
+    transition: 0.5s;
+}
+
+figure:active {
+    filter: brightness(55%);
+}
+
+.playerSelectionBox {
+    display: flex;
+    margin: auto;
+    margin-top: 30px;
+    width: 600px;
+    justify-content: space-between;
+}
+
+table,
+td {
+    border: 2px solid white;
+    margin: auto;
+    width: 700px;
+    text-align: center;
+}
+
+thead {
+    background-color: #3c414a;
+}
+
+table {
+    box-shadow: 0px 0px 10px goldenrod;
+    border-collapse: collapse;
+    font-size: 30px;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    color: #fef6f6;
+}
+
+td.playerScore,
+td.computerScore {
+    padding: 50px;
+    font-size: 30px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #222831;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: #059bf2;
+    color: #ffffffdd;
+    font-family: "Roboto", sans-serif;
+    width: 100px;
+    height: 50px;
+    border-radius: 40px;
+}
+
+button:hover {
+    background-color: #0483cd;
+}
+
+button:active {
+    background-color: #036ca9;
+}
+
+.winner {
+    font-family: "Roboto", sans-serif;
+    color: #ffffffdd;
+    font-size: 30px;
+}

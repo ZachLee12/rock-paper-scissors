@@ -1,4 +1,6 @@
 let choices = ["rock", "paper", "scissors"];
+let playerChoice = "";
+let computerChoice = "";
 let computerPlay = () => {
     return choices[Math.floor(Math.random() * 3)];
 }
@@ -38,71 +40,65 @@ let playRound = (playerSelection, computerSelection) => {
 
     playerSelection = playerSelection.trim().toLowerCase();
     computerSelection = computerSelection.trim().toLowerCase();
-    playerWins ? console.log(`You Win! ${playerSelection} beats ${computerSelection}`) :
-        console.log(`You Lose! ${computerSelection} beats ${playerSelection}`)
+
     return playerWins;
-
 }
 
-let check = (input) => {
-    if (input === null) {
-        console.log("Invalid input. Enter rock, paper or scissors!")
-        return false;
-    }
+let restartButton = document.querySelector("#restartButton")
+let announcement = document.querySelector(".announcement>div")
+let playerScore = 0;
+let computerScore = 0;
+let modalWinner = document.querySelector(".winner")
+let modal = document.getElementById("myModal");
 
-    if (!choices.includes(input.trim().toLowerCase())) {
-        console.log("Invalid input. Enter rock, paper or scissors!")
-        return false;
-    }
+document.querySelectorAll("figure").forEach((figure) => {
+    figure.addEventListener("click", () => {
+        playerChoice = figure.id;
+        computerChoice = computerPlay();
+        playerWin = playRound(playerChoice, computerChoice)
+        updateResults(playerWin, playerChoice, computerChoice)
+        if (playerScore == 5) {
+            modalWinner.innerText = "You Win!"
+            modal.style.display = "block";
 
-    return true
-}
-
-let game = () => {
-    let playerScore = 0;
-    let computerScore = 0;
-    let playerWins = undefined;
-    let validInput = false;
-    let playerInput = "";
-
-    alert("A game of rock, paper, scissors! Can you beat your own computer in 5 rounds?")
-
-    for (let i = 0; i < 5; i++) {
-        (function () {
-            playerInput = prompt(`Enter rock, paper or scissors [round ${i + 1}]!`)
-        }())
-        
-        validInput = check(playerInput);
-        while (!validInput) {
-            (function () {
-                playerInput = prompt(`Enter rock, paper or scissors [round ${i + 1}]!`)
-            }())
-            validInput = check(playerInput);
+        } else if (computerScore == 5) {
+            modalWinner.innerText = "You Lose!"
+            modal.style.display = "block";
         }
+    })
+})
 
-        playerWins = playRound(playerInput, computerPlay())
-        
-        if (typeof playerWins === typeof false) {
-            playerWins ? playerScore++ : computerScore++;
-        } 
-
-    }
-
-    console.log("#########################################");
-    console.log(`Your score: ${playerScore}`);
-    console.log(`Computer score: ${computerScore}`);
-
-    if (playerScore > computerScore) {
-        console.log("You won!");
-    } else if (playerScore < computerScore) {
-        console.log("Computer won!");
+function updateResults(playerWin, playerChoice, computerChoice) {
+    //capitalize first letter of player and computer choices for formatting!
+    let playerStr1 = playerChoice;
+    let playerStr2 = playerStr1.charAt(0).toUpperCase() + playerStr1.slice(1);
+    let comStr1 = computerChoice;
+    let comStr2 = comStr1.charAt(0).toUpperCase() + comStr1.slice(1);
+    //
+    if (typeof playerWin == typeof false) {
+        if (playerWin) {
+            playerScore++
+            document.querySelector("td.playerScore").innerText = playerScore;
+            announcement.innerText = `You win! ${playerChoice} beats ${computerChoice}`
+        } else {
+            computerScore++;
+            document.querySelector("td.computerScore").innerText = computerScore
+            announcement.innerText = `You lose! ${comStr2} beats ${playerStr2}`
+        }
     } else {
-        console.log("Nobody won!");
+        announcement.innerText = "Draw!";
     }
-    console.log("#########################################");
 }
 
-game();
+restartButton.addEventListener("click", () => {
+    modal.style.display = "none";
+    playerScore = 0;
+    computerScore = 0;
+    document.querySelector("td.playerScore").innerText = playerScore
+    document.querySelector("td.computerScore").innerText = computerScore
+    announcement.innerText = "First to 5 points wins!"
+})
+
 
 
 
